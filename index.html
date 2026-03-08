@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>地道英语交互点读机 - Scarlett O'Hara</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Georgia&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'ui-sans-serif', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        .georgia-text {
+            font-family: 'Georgia', serif;
+            line-height: 1.8;
+            font-size: 1.25rem;
+        }
+        .hotspot {
+            cursor: pointer;
+            border-bottom: 2px dashed #3b82f6;
+            transition: all 0.2s ease;
+            padding: 0 2px;
+            border-radius: 4px;
+        }
+        .hotspot:hover {
+            background-color: #dbeafe;
+            color: #1d4ed8;
+        }
+        .hotspot.active {
+            background-color: #3b82f6;
+            color: white;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body class="min-h-screen p-4 md:p-8">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-8">
+        
+        <!-- 左侧原文区 (60%) -->
+        <main class="w-full md:w-3/5 bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+            <header class="mb-8 border-b border-gray-100 pb-4">
+                <h1 class="text-3xl font-bold text-gray-800">Classic Literature Reader</h1>
+                <p class="text-gray-500 italic">Gone with the Wind - Margaret Mitchell</p>
+                <div class="mt-4 flex items-center gap-2 text-sm text-blue-600">
+                    <span>💡 点击高亮单词即可点读与解析</span>
+                </div>
+            </header>
+
+            <article class="georgia-text text-gray-800 space-y-6">
+                <p>
+                    <span class="hotspot" data-word="SCARLETT O’HARA" data-cn="斯嘉丽·奥哈拉" data-depth="小说女主角名。O' 是典型爱尔兰姓氏前缀，暗示了其父系的爱尔兰血统。" data-example="Scarlett O'Hara remains one of the most iconic characters in American literature.">SCARLETT O’HARA</span> 
+                    was not beautiful, but men 
+                    <span class="hotspot" data-word="seldom realized it" data-cn="很少意识到这点" data-depth="seldom 是高阶频率副词，realized 强调后知后觉的认知过程。" data-example="In her presence, critics seldom realized her flaws due to her overwhelming energy.">seldom realized it</span> 
+                    when 
+                    <span class="hotspot" data-word="caught by her charm" data-cn="为其魅力所俘获" data-depth="Caught by 表示“被...吸引/困住”，强调无法抗拒的状态。" data-example="The young diplomat was completely caught by her charm and intelligence.">caught by her charm</span> 
+                    as the Tarleton twins were. In her face were 
+                    <span class="hotspot" data-word="too sharply blended" data-cn="融合得过于分明" data-depth="Sharp 描述线条或感官刺激的强烈，blended 指特征的混合，暗示长相极具个性而非平庸。" data-example="The modern and traditional styles were sharply blended in this architecture.">too sharply blended</span> 
+                    the 
+                    <span class="hotspot" data-word="delicate features" data-cn="精致的五官" data-depth="Delicate 常用于形容精巧、高雅的特征。Features 专指五官。" data-example="Her delicate features gave her a look of fragile elegance.">delicate features</span> 
+                    of her mother, a 
+                    <span class="hotspot" data-word="Coast aristocrat" data-cn="沿海地区的贵族" data-depth="指美国南部沿海的高级社会阶层，通常具有法国或英国贵族背景。" data-example="He behaved with the detached manner of a true Coast aristocrat.">Coast aristocrat</span> 
+                    of 
+                    <span class="hotspot" data-word="French descent" data-cn="法国血统" data-depth="Descent 表示后代、血统，说明家族渊源。" data-example="Many families in New Orleans are of French descent.">French descent</span>, 
+                    and the 
+                    <span class="hotspot" data-word="heavy ones" data-cn="（五官）粗犷的部分" data-depth="Heavy 与之前的 Delicate 形成对比，暗示其父长相的刚猛。" data-example="He inherited his father's heavy jaw and broad shoulders.">heavy ones</span> 
+                    of her 
+                    <span class="hotspot" data-word="florid" data-cn="红润的/气色极佳的" data-depth="本意为花哨的，形容脸色时指红润且带有健康（或酒精导致的）血色。" data-example="The host was a large, florid man with a booming voice.">florid</span> 
+                    Irish father.
+                </p>
+
+                <p>
+                    But it was an 
+                    <span class="hotspot" data-word="arresting face" data-cn="引人注目的面孔" data-depth="Arresting 意为极具吸引力或非同寻常，能立刻抓住别人的注意力。" data-example="She has an arresting face that you can't easily forget.">arresting face</span>, 
+                    <span class="hotspot" data-word="pointed of chin" data-cn="下巴尖尖" data-depth="一种典型的文学描写方式：形容词 + of + 身体部位，显现出古典优雅。" data-example="The character was described as pointed of chin and wide of eye.">pointed of chin</span>, 
+                    square of jaw. Her eyes were 
+                    <span class="hotspot" data-word="pale green" data-cn="淡绿色" data-depth="斯嘉丽最著名的特征，象征着嫉妒与生机，也是她迷人的核心。" data-example="Her pale green eyes flashed with anger.">pale green</span> 
+                    without a touch of 
+                    <span class="hotspot" data-word="hazel" data-cn="淡褐色/赤褐色" data-depth="描述眼球颜色时，通常指介于棕色和绿色之间的颜色。" data-example="Most people in his family have hazel eyes.">hazel</span>, 
+                    <span class="hotspot" data-word="starred with" data-cn="点缀着.../如星般环绕" data-depth="用星型来比喻睫毛的排列，极具文学美感。" data-example="The sky was starred with distant galaxies.">starred with</span> 
+                    <span class="hotspot" data-word="bristly black lashes" data-cn="浓密的黑睫毛" data-depth="Bristly 形容毛发坚硬、浓密且根根分明。" data-example="He brushed his bristly black lashes against her cheek.">bristly black lashes</span> 
+                    and slightly 
+                    <span class="hotspot" data-word="tilted" data-cn="上翘的/倾斜的" data-depth="指眼角稍微向上勾，带有一种异域风情或狡黠感。" data-example="The roof of the old temple was slightly tilted at the ends.">tilted</span> 
+                    at the ends. 
+                </p>
+
+                <p>
+                    Above them, her thick black brows slanted upward, cutting a startling 
+                    <span class="hotspot" data-word="oblique line" data-cn="斜线" data-depth="Oblique 意为倾斜的、间接的。这里描写眉毛斜插，显得神采飞扬且有个性。" data-example="The sun cast oblique shadows across the lawn.">oblique line</span> 
+                    in her 
+                    <span class="hotspot" data-word="magnolia-white skin" data-cn="如木兰花般洁白的皮肤" data-depth="木兰花是美国南方的象征，这种肤色被视为贵族身份的标志。" data-example="She had that classic magnolia-white skin typical of Southern belles.">magnolia-white skin</span>—
+                    that skin so 
+                    <span class="hotspot" data-word="prized" data-cn="珍视的/视如珍宝的" data-depth="Prize 在这里作动词，意为高度评价或非常看重。" data-example="In many cultures, fair skin is highly prized.">prized</span> 
+                    by Southern women and so carefully 
+                    <span class="hotspot" data-word="guarded with" data-cn="用...小心呵护" data-depth="Guard 指保护，此处体现了南方女性为了防晒所做的繁琐努力。" data-example="The secret was closely guarded with heavy security.">guarded with</span> 
+                    bonnets, veils and 
+                    <span class="hotspot" data-word="mittens" data-cn="连指手套" data-depth="为了防止手部晒黑，当时的名媛会佩戴精美的手套。" data-example="The child wore warm red mittens in the snow.">mittens</span> 
+                    against hot Georgia suns.
+                </p>
+            </article>
+        </main>
+
+        <!-- 右侧解析面板 (40%) -->
+        <aside class="w-full md:w-2/5 relative">
+            <div id="info-panel" class="sticky top-8 glass-panel p-6 rounded-2xl shadow-xl min-h-[400px] border border-white/50 flex flex-col transition-all duration-300">
+                <div id="placeholder-content" class="flex-grow flex flex-col items-center justify-center text-center text-gray-400 opacity-60">
+                    <svg class="w-16 h-16 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                    <p class="text-lg">请点击左侧重点词汇<br>即刻开启深度点读模式</p>
+                </div>
+
+                <div id="detail-content" class="hidden animate-in fade-in duration-500">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 id="current-word" class="text-2xl font-bold text-blue-900 leading-tight"></h2>
+                        <button onclick="speakCurrentWord()" class="p-2 bg-blue-100 hover:bg-blue-200 rounded-full transition-colors group">
+                            <svg class="w-6 h-6 text-blue-600 group-active:scale-90 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M14 14.97V16.5c0 .28-.22.5-.5.5h-1c-.28 0-.5-.22-.5-.5v-1.53c-1.12-.17-2.02-.91-2.35-1.89-.11-.3-.02-.63.22-.84.23-.22.58-.27.88-.16.51.18 1.08.18 1.59 0 .21-.07.45-.04.64.1.18.15.29.38.29.62 0 .54-.41.97-.93 1.05V15h1v-.03c.52-.08.93-.51.93-1.05 0-.24.11-.47.29-.62.19-.14.43-.17.64-.1.3.11.45.41.34.71-.33.98-1.23 1.72-2.35 1.89zM19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7 3.13-7 7-7 7 3.13 7 7zm-7 9c4.97 0 9-4.03 9-9s-4.03-9-9-9-9 4.03-9 9 4.03 9 9 9z"/>
+                                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="space-y-6">
+                        <section>
+                            <h3 class="text-sm font-bold uppercase tracking-wider text-blue-500 mb-1">核心义项 Core Meaning</h3>
+                            <p id="word-cn" class="text-lg text-gray-800 font-medium"></p>
+                        </section>
+
+                        <section>
+                            <h3 class="text-sm font-bold uppercase tracking-wider text-blue-500 mb-1">深度拆解 Deep Analysis</h3>
+                            <div class="p-3 bg-blue-50/50 rounded-lg border border-blue-100/50">
+                                <p id="word-depth" class="text-gray-700 leading-relaxed"></p>
+                            </div>
+                        </section>
+
+                        <section>
+                            <h3 class="text-sm font-bold uppercase tracking-wider text-blue-500 mb-1">场景造句 Contextual Sentence</h3>
+                            <div class="p-3 bg-white/50 rounded-lg border border-gray-200 italic text-gray-600">
+                                "<span id="word-example"></span>"
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        const placeholder = document.getElementById('placeholder-content');
+        const detailContent = document.getElementById('detail-content');
+        const currentWordEl = document.getElementById('current-word');
+        const wordCnEl = document.getElementById('word-cn');
+        const wordDepthEl = document.getElementById('word-depth');
+        const wordExampleEl = document.getElementById('word-example');
+
+        let synth = window.speechSynthesis;
+        let lastWord = "";
+
+        function attachEvents() {
+            document.querySelectorAll('.hotspot').forEach(span => {
+                span.addEventListener('click', function() {
+                    const word = this.getAttribute('data-word');
+                    const cn = this.getAttribute('data-cn');
+                    const depth = this.getAttribute('data-depth');
+                    const example = this.getAttribute('data-example');
+
+                    document.querySelectorAll('.hotspot').forEach(s => s.classList.remove('active'));
+                    this.classList.add('active');
+
+                    placeholder.classList.add('hidden');
+                    detailContent.classList.remove('hidden');
+
+                    currentWordEl.innerText = word;
+                    wordCnEl.innerText = cn;
+                    wordDepthEl.innerText = depth;
+                    wordExampleEl.innerText = example;
+
+                    lastWord = word;
+                    speak(word);
+                });
+            });
+        }
+
+        function speak(text) {
+            if (synth.speaking) synth.cancel();
+            const utter = new SpeechSynthesisUtterance(text);
+            utter.lang = 'en-US';
+            utter.rate = 0.9;
+            const voices = synth.getVoices();
+            const preferredVoice = voices.find(v => v.name.includes('Samantha') || v.name.includes('Google US English'));
+            if (preferredVoice) utter.voice = preferredVoice;
+            synth.speak(utter);
+        }
+
+        function speakCurrentWord() {
+            if (lastWord) speak(lastWord);
+        }
+
+        window.onload = attachEvents;
+        window.speechSynthesis.getVoices();
+    </script>
+</body>
+</html>
