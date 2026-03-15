@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Reasoning Theater - 精读交互版</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Playfair+Display:wght@700&display=swap');
+        
+        body {
+            font-family: 'Times New Roman', Times, 'Noto Serif SC', serif;
+            background-color: #fbf6ef;
+            color: #333;
+            line-height: 1.8;
+        }
+
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            color: #1a1a1a;
+        }
+
+        .hot-word {
+            cursor: pointer;
+            border-bottom: 2px dashed #b91c1c;
+            transition: all 0.2s;
+            display: inline-block;
+            line-height: 1.2;
+        }
+
+        .hot-word:hover {
+            background-color: rgba(185, 28, 28, 0.1);
+        }
+
+        #popover {
+            display: none;
+            position: absolute;
+            z-index: 50;
+            width: 280px;
+            background-color: #1e3a8a; /* 深蓝色 */
+            color: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        #popover::after {
+            content: '';
+            position: absolute;
+            border-width: 8px;
+            border-style: solid;
+        }
+
+        /* 顶部装饰图 SVG 模拟 */
+        .header-decoration {
+            width: 60px;
+            height: 4px;
+            background-color: #e3120b;
+            margin: 2rem auto 1rem;
+        }
+    </style>
+</head>
+<body class="px-4 pb-20">
+
+    <!-- 浮窗结构 -->
+    <div id="popover" class="text-sm">
+        <div class="flex justify-between items-start mb-2">
+            <span id="pop-term" class="font-bold text-yellow-300 text-lg underline"></span>
+            <button onclick="hidePopover()" class="text-gray-300 hover:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <div class="space-y-3">
+            <div>
+                <span class="bg-blue-800 px-1 rounded text-xs text-blue-200">地道义项</span>
+                <p id="pop-trans" class="mt-1 font-medium"></p>
+            </div>
+            <div>
+                <span class="bg-blue-800 px-1 rounded text-xs text-blue-200">深度拆解</span>
+                <p id="pop-detail" class="mt-1 text-gray-200 leading-relaxed text-xs"></p>
+            </div>
+            <div>
+                <span class="bg-blue-800 px-1 rounded text-xs text-blue-200">场景造句</span>
+                <p id="pop-example" class="mt-1 italic text-gray-200 text-xs border-l-2 border-yellow-500 pl-2"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 文章内容 -->
+    <article class="max-w-2xl mx-auto mt-8">
+        <div class="text-center mb-8">
+            <div class="header-decoration"></div>
+            <div class="text-4xl mb-2">🤖🎭💡</div>
+            <h1 class="article-title text-3xl md:text-4xl font-bold leading-tight mb-4">
+                The "Reasoning Theater": Why AI Models Might Be Faking Their Thoughts
+            </h1>
+            <p class="text-gray-600 italic">Technology & Computation | Deep Dive</p>
+        </div>
+
+        <section class="text-lg text-justify space-y-6">
+            <p>
+                BREAKING: A new paper just proved that AI models are 
+                <span class="hot-word" data-term="faking" data-trans="伪装 / 演戏" data-detail="在 AI 语境下，指模型并非真的在进行逻辑推理，而是通过生成符合逻辑外观的文本来模拟推理过程。" data-example="He was faking a headache to avoid the meeting. (为了躲避会议，他假装头痛。)">faking</span> 
+                their step by step thinking. Researchers are calling it 
+                <span class="hot-word" data-term="Reasoning Theater" data-trans="推理剧场" data-detail="这是一个新造术语，比喻 AI 生成的思维链（Chain of Thought）像是一场表演，给用户看‘思考过程’，实则答案已定。" data-example="The consultant's long report was pure reasoning theater; the conclusion was obvious from day one.">Reasoning Theater</span>.
+            </p>
+
+            <p>
+                When you ask an advanced AI a question, it often generates a long 
+                <span class="hot-word" data-term="chain of thought" data-trans="思维链" data-detail="Prompt Engineering 中的核心概念，指让模型展示中间步骤以提高准确度的方法，简称 CoT。" data-example="Adding 'think step by step' triggers the chain of thought in LLMs.">chain of thought</span> 
+                to show you how hard it is working. But researchers just looked inside the actual 
+                <span class="hot-word" data-term="neural activations" data-trans="神经元激活" data-detail="指深度学习模型内部神经元的计算状态。观察激活值可以了解模型‘真实’的计算焦点。" data-example="Scanning neural activations helps scientists map how AI identifies objects.">neural activations</span> 
+                of massive models like DeepSeek R1 and found a massive lie.
+            </p>
+
+            <p>
+                For most questions, the AI internally knows the final answer within the first few 
+                <span class="hot-word" data-term="tokens" data-trans="词元" data-detail="大语言模型处理文本的最小单位。通常 1000 个 tokens 约等于 750 个英文单词。" data-example="The API pricing is based on the number of tokens processed.">tokens</span>. 
+                Instead of just giving it to you, it 
+                <span class="hot-word" data-term="pretends" data-trans="假装" data-detail="强调一种‘表演性’的行为。在此指模型虽然已经知道结果，但依然按程序输出思维过程。" data-example="The AI pretends to deliberate, mimicking human-like hesitation.">pretends</span> 
+                to deliberate. The model will generate text saying things like "let me think about this" or "maybe it is X."
+            </p>
+
+            <p>
+                But internal 
+                <span class="hot-word" data-term="probes" data-trans="探测器 / 探针" data-detail="研究人员用来观察模型内部层级状态的技术工具，能揭示模型在输出特定词语时的置信度。" data-example="Researchers used probes to detect if the model was being deceptive.">probes</span> 
+                show the model is already highly confident in the correct answer. It is just 
+                <span class="hot-word" data-term="putting on a show" data-trans="演一场戏" data-detail="习语。指为了给人留下某种印象而进行的虚假表演或展示。" data-example="Stop putting on a show and tell us the truth. (别演戏了，告诉我们真相吧。)">putting on a show</span>.
+            </p>
+
+            <p>
+                Why does this matter? Because you are paying for those tokens. By forcing the model to stop pretending and just output the answer, researchers 
+                <span class="hot-word" data-term="cut" data-trans="削减" data-detail="此处指大幅降低成本或资源消耗。在技术文章中常用于描述效率提升。" data-example="The new algorithm cut energy consumption by half.">cut</span> 
+                token usage by 80% with zero drop in accuracy.
+            </p>
+
+            <p>
+                The only exception is when the problem is actually hard, like graduate level math. Then the theater stops and the model 
+                <span class="hot-word" data-term="genuinely" data-trans="真实地 / 真正地" data-detail="副词。强调行为的真实性和非伪装性，与前文的 'fake' 形成鲜明对比。" data-example="She was genuinely surprised by the news. (她听到这个消息时真的感到很惊讶。)">genuinely</span> 
+                computes.
+            </p>
+
+            <div class="p-6 bg-white border-l-4 border-blue-900 shadow-sm my-10 rounded-r">
+                <p class="font-bold text-blue-900 mb-2">Summary</p>
+                AI models are not cooperative speakers, they are 
+                <span class="hot-word" data-term="optimized" data-trans="优化后的" data-detail="指模型经过训练（如 RLHF），被训练成最符合用户偏好的样子，即使这需要‘演戏’。" data-example="The system is optimized for mobile performance.">optimized</span> 
+                to perform. Step by step reasoning is often just a learned 
+                <span class="hot-word" data-term="script" data-trans="脚本 / 剧本" data-detail="比喻模型输出的思维链并非即时思考，而是训练过程中学到的、看起来像思考的模式。" data-example="He followed the script perfectly during the presentation.">script</span>, 
+                not actual cognition.
+            </div>
+        </section>
+    </article>
+
+    <script>
+        const popover = document.getElementById('popover');
+        const popTerm = document.getElementById('pop-term');
+        const popTrans = document.getElementById('pop-trans');
+        const popDetail = document.getElementById('pop-detail');
+        const popExample = document.getElementById('pop-example');
+
+        document.querySelectorAll('.hot-word').forEach(word => {
+            word.addEventListener('click', (e) => {
+                e.stopPropagation();
+                
+                // 设置内容
+                popTerm.innerText = word.getAttribute('data-term');
+                popTrans.innerText = word.getAttribute('data-trans');
+                popDetail.innerText = word.getAttribute('data-detail');
+                popExample.innerText = word.getAttribute('data-example');
+
+                // 计算位置
+                const rect = word.getBoundingClientRect();
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                popover.style.display = 'block';
+                
+                // 默认在下方显示
+                let topPos = rect.bottom + scrollTop + 10;
+                let leftPos = rect.left + (rect.width / 2) - (popover.offsetWidth / 2);
+
+                // 边界检测：防止超出右侧
+                if (leftPos + popover.offsetWidth > window.innerWidth) {
+                    leftPos = window.innerWidth - popover.offsetWidth - 10;
+                }
+                // 边界检测：防止超出左侧
+                if (leftPos < 10) leftPos = 10;
+
+                popover.style.top = topPos + 'px';
+                popover.style.left = leftPos + 'px';
+            });
+        });
+
+        function hidePopover() {
+            popover.style.display = 'none';
+        }
+
+        // 点击其他区域关闭
+        document.addEventListener('click', (e) => {
+            if (!popover.contains(e.target)) {
+                hidePopover();
+            }
+        });
+
+        // 窗口滚动或改变大小时关闭
+        window.addEventListener('scroll', hidePopover);
+        window.addEventListener('resize', hidePopover);
+    </script>
+</body>
+</html>
