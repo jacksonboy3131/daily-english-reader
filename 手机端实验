@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elon Musk AI Interview Reader</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600&family=Inter:wght@400;600&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow: hidden; /* Prevent body scroll */
+            background-color: #f8fafc;
+        }
+
+        .serif-text {
+            font-family: 'Crimson Pro', serif;
+            line-height: 1.6;
+        }
+
+        .hot-spot {
+            cursor: pointer;
+            border-bottom: 2px dashed #3b82f6;
+            transition: all 0.2s ease;
+            padding: 0 2px;
+            border-radius: 4px;
+        }
+
+        .hot-spot:hover {
+            background-color: #dbeafe;
+            border-bottom-style: solid;
+        }
+
+        .hot-spot:active {
+            transform: scale(0.95);
+            background-color: #bfdbfe;
+        }
+
+        /* Scrollbar styles */
+        .custom-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+
+        /* Sidebar visibility */
+        #side-panel {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body class="h-screen w-screen flex flex-row">
+
+    <!-- Left: Original Content (70%) -->
+    <main class="w-[70%] h-full flex flex-col bg-white border-r border-slate-200">
+        <!-- Header -->
+        <header class="p-6 border-b border-slate-100 flex items-center justify-between">
+            <div>
+                <h1 class="text-xl font-bold text-slate-800">Elon Musk: AI Control Paradox</h1>
+                <p class="text-sm text-slate-500 italic">Tap underlined phrases to listen and learn.</p>
+            </div>
+            <div class="flex items-center space-x-2 text-blue-600">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+                <span class="text-xs font-semibold uppercase tracking-wider">Interactive Edition</span>
+            </div>
+        </header>
+
+        <!-- Content Area -->
+        <div class="flex-1 overflow-y-auto custom-scroll p-10 md:p-16 lg:p-24 bg-[#fffdfa]">
+            <article class="serif-text text-2xl md:text-3xl lg:text-4xl text-slate-800 space-y-12">
+                <p>
+                    Elon Musk clearly explains why 
+                    <span class="hot-spot" onclick="analyze('controlling', '控制 / 驾驭', '指对某种强大力量的主动支配。在AI语境下，常讨论 Alignment（对齐）问题，即如何让AI的目标与人类一致。', 'Controlling the narrative is crucial for a startup during a crisis.')">controlling</span> 
+                    <span class="hot-spot" onclick="analyze('super-intelligent AI', '超人工智能', '指认知能力在几乎所有领域都远超人类的AI系统。这是通用人工智能（AGI）之后的更高阶段。', 'Once we achieve super-intelligent AI, the future of humanity will be fundamentally altered.')">super-intelligent AI</span> 
+                    is impossible.
+                </p>
+
+                <p>
+                    "The reality is we’re building 
+                    <span class="hot-spot" onclick="analyze('hyper-intelligent', '极度智能', '前缀 hyper- 表示“超越、过度”。强调AI的算力和逻辑密度超出了普通 biological intelligence 的范畴。', 'The new processor is hyper-intelligent in handling complex data flows.')">hyper-intelligent</span>, 
+                    more intelligent than we can 
+                    <span class="hot-spot" onclick="analyze('comprehend', '理解 / 领悟', '不仅是懂，而是深层次的领会。Musk暗示人类大脑可能由于生物极限，无法直观感受AI的思考逻辑。', 'The scale of the galaxy is something we can barely comprehend.')">comprehend</span>.
+                </p>
+
+                <p>
+                    It’s like 
+                    <span class="hot-spot" onclick="analyze('raising', '养育 / 培养', '原指养孩子。这里将AI比作后代，暗示我们只有“教育权”，而没有“所有权”或永久的操控权。', 'Raising a visionary company requires a balance of discipline and freedom.')">raising</span> 
+                    a super-genius child that you know is going to be 
+                    <span class="hot-spot" onclick="analyze('much smarter than you', '远比你聪明', '口语中常用的比较级。在科技语境下指代 Intelligence Explosion（智能爆炸）的必然结果。', 'To lead a great team, you need to hire people who are much smarter than you.')">much smarter than you</span>.
+                </p>
+
+                <p>
+                    You can 
+                    <span class="hot-spot" onclick="analyze('instill good values', '灌输/潜移默化价值观', 'Instill 意为“滴入”，常用于缓慢地教导道德、习惯等。强调早期教育和价值观对齐的重要性。', 'It is our duty to instill good values in the next generation of engineers.')">instill good values</span> 
+                    in how you raise that child: 
+                    <span class="hot-spot" onclick="analyze('philanthropic values', '慈善/博爱价值', '源自希腊语，指热爱人类。指让AI具备利他主义，而不是单纯追求任务效率。', 'The founder is known for his philanthropic values and massive donations.')">philanthropic values</span>, 
+                    good morals, honest, productive.
+                </p>
+
+                <p>
+                    Controlling it 
+                    <span class="hot-spot" onclick="analyze('at the end of the day', '归根结底', '职场极高频短语。用于总结核心观点，表示排除所有干扰因素后的最终事实。', 'At the end of the day, profits are not the only measure of success.')">at the end of the day</span> 
+                    I don't think we'll be able to.
+                </p>
+
+                <p>
+                    The best we can do is make sure it's 
+                    <span class="hot-spot" onclick="analyze('raised well', '被教导得好', '强调结果。Musk认为AI的安全性取决于其“童年”时期的规则设定。', 'A well-raised algorithm should prioritize user safety above all else.')">raised well</span>."
+                </p>
+            </article>
+        </div>
+    </main>
+
+    <!-- Right: Analysis Panel (30%) -->
+    <aside id="side-panel" class="w-[30%] h-full bg-slate-50 flex flex-col translate-x-full shadow-2xl border-l border-slate-300 fixed right-0 top-0 z-10 md:relative md:translate-x-0">
+        <!-- Panel Header -->
+        <div class="p-4 border-b border-slate-200 flex items-center justify-between bg-white">
+            <button onclick="playCurrent()" class="p-2 bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-full transition-colors" title="Listen again">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                </svg>
+            </button>
+            <span class="text-sm font-bold text-slate-400 uppercase">Analysis</span>
+            <button onclick="closePanel()" class="p-2 hover:bg-slate-100 rounded-full text-slate-400">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Panel Content -->
+        <div id="panel-body" class="flex-1 overflow-y-auto custom-scroll p-6 hidden">
+            <h2 id="current-word" class="text-3xl font-bold text-blue-600 mb-6 leading-tight"></h2>
+            
+            <div class="space-y-6">
+                <section>
+                    <h3 class="text-xs font-black text-slate-400 uppercase mb-2 tracking-widest">[核心义项]</h3>
+                    <p id="meaning" class="text-slate-800 text-lg font-semibold"></p>
+                </section>
+
+                <section>
+                    <h3 class="text-xs font-black text-slate-400 uppercase mb-2 tracking-widest">[深度拆解]</h3>
+                    <p id="breakdown" class="text-slate-600 text-base leading-relaxed"></p>
+                </section>
+
+                <section>
+                    <h3 class="text-xs font-black text-slate-400 uppercase mb-2 tracking-widest">[场景造句]</h3>
+                    <div class="bg-blue-50 p-4 rounded-xl border-l-4 border-blue-400">
+                        <p id="sentence" class="text-slate-700 italic"></p>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Placeholder when nothing is selected -->
+        <div id="panel-placeholder" class="flex-1 flex flex-col items-center justify-center p-8 text-center">
+            <div class="w-16 h-16 bg-slate-200 rounded-full flex items-center justify-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+                </svg>
+            </div>
+            <p class="text-slate-400 text-sm">Select a highlighted phrase to see details</p>
+        </div>
+    </aside>
+
+    <script>
+        let lastWord = "";
+
+        function analyze(word, meaning, breakdown, sentence) {
+            lastWord = word;
+            
+            // UI Update
+            document.getElementById('panel-placeholder').classList.add('hidden');
+            const panelBody = document.getElementById('panel-body');
+            panelBody.classList.remove('hidden');
+
+            document.getElementById('current-word').textContent = word;
+            document.getElementById('meaning').textContent = meaning;
+            document.getElementById('breakdown').textContent = breakdown;
+            document.getElementById('sentence').textContent = sentence;
+
+            // Show panel on mobile
+            const sidePanel = document.getElementById('side-panel');
+            sidePanel.classList.remove('translate-x-full');
+
+            // Speech
+            speak(word);
+        }
+
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                // Cancel any ongoing speech
+                window.speechSynthesis.cancel();
+                
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.9;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        function playCurrent() {
+            if (lastWord) speak(lastWord);
+        }
+
+        function closePanel() {
+            const sidePanel = document.getElementById('side-panel');
+            sidePanel.classList.add('translate-x-full');
+        }
+
+        // Adjust layout for mobile orientation/screen
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                document.getElementById('side-panel').classList.remove('translate-x-full');
+            }
+        });
+    </script>
+</body>
+</html>
