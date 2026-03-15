@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>English News Reader - Landscape Mode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Georgia&display=swap');
+
+        :root {
+            --primary-bg: #fdfdfc;
+            --sidebar-bg: #f7f7f5;
+            --accent-color: #c2410c; /* Newsy burnt orange */
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background-color: var(--primary-bg);
+        }
+
+        /* Forced Landscape layout */
+        .app-container {
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* Article Area */
+        .article-panel {
+            flex: 0 0 70%;
+            padding: 4rem 10%;
+            overflow-y: auto;
+            border-right: 1px solid #e5e5e5;
+            font-family: 'Georgia', serif;
+            line-height: 1.8;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Analysis Area */
+        .analysis-panel {
+            flex: 0 0 30%;
+            background-color: var(--sidebar-bg);
+            padding: 2rem;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            box-shadow: inset 5px 0 15px rgba(0,0,0,0.02);
+        }
+
+        .word-clickable {
+            cursor: pointer;
+            transition: all 0.2s;
+            padding: 0 2px;
+            border-radius: 2px;
+            display: inline-block;
+        }
+
+        .word-clickable:hover {
+            background-color: #fee2e2;
+        }
+
+        .word-active {
+            background-color: var(--accent-color) !important;
+            color: white !important;
+        }
+
+        .landscape-tip {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #111;
+            color: white;
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @media (orientation: portrait) {
+            .landscape-tip {
+                display: flex;
+            }
+        }
+
+        .section-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 2px;
+        }
+    </style>
+</head>
+<body class="text-gray-900">
+
+    <!-- Orientation Warning -->
+    <div class="landscape-tip">
+        <div>
+            <div class="mb-4">🔄</div>
+            <p class="text-xl font-bold">请横屏观看以获得最佳体验</p>
+            <p class="text-sm opacity-60 mt-2">Landscape mode required for side-by-side analysis</p>
+        </div>
+    </div>
+
+    <div class="app-container">
+        <!-- Left: Article Content -->
+        <main class="article-panel bg-white" id="articleBody">
+            <header class="mb-12">
+                <div class="text-sm font-bold text-orange-700 mb-2 uppercase tracking-widest">Frontier Tech</div>
+                <h1 class="text-4xl md:text-5xl font-black mb-6 leading-tight">Joining SpaceX and xAI</h1>
+                <div class="flex items-center text-gray-500 text-sm italic">
+                    <span>By News Reader AI</span>
+                    <span class="mx-2">•</span>
+                    <span>March 2024</span>
+                </div>
+            </header>
+            
+            <div class="text-xl md:text-2xl text-gray-800 space-y-6" id="textGrid">
+                <!-- Content will be injected by JS -->
+            </div>
+            
+            <footer class="mt-20 pt-10 border-t border-gray-100 text-gray-400 text-sm">
+                End of Transcript. Tap any word for instant analysis.
+            </footer>
+        </main>
+
+        <!-- Right: Analysis Sidebar -->
+        <aside class="analysis-panel" id="analysisArea">
+            <div id="welcomeMessage" class="h-full flex flex-col justify-center items-center text-center text-gray-400">
+                <svg class="w-12 h-12 mb-4 opacity-20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18 18.247 18.477 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+                <p>点击左侧单词查看解析</p>
+                <p class="text-xs">Tap a word to start learning</p>
+            </div>
+
+            <div id="contentDisplay" class="hidden">
+                <div class="mb-6">
+                    <div class="flex items-center justify-between mb-1">
+                        <h2 id="targetWord" class="text-3xl font-bold text-gray-900">Word</h2>
+                        <button onclick="speakCurrentWord()" class="p-2 bg-white rounded-full shadow-sm hover:bg-gray-50">
+                            <svg class="w-5 h-5 text-orange-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.983 5.983 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.984 3.984 0 00-1.172-2.828 1 1 0 010-1.415z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+                    <p id="phonetic" class="text-orange-600 font-mono text-sm">/phonetic/</p>
+                </div>
+
+                <section class="mb-6">
+                    <h3 class="section-title">核心释义 Core Meaning</h3>
+                    <p id="meaning" class="text-gray-700 leading-relaxed"></p>
+                </section>
+
+                <section class="mb-6">
+                    <h3 class="section-title">深度拆解 Breakdown</h3>
+                    <div id="breakdown" class="bg-white p-3 rounded-lg border border-gray-200 text-sm text-gray-600 space-y-2">
+                    </div>
+                </section>
+
+                <section class="mb-6">
+                    <h3 class="section-title">场景造句 Example</h3>
+                    <p id="example" class="italic text-gray-700 border-l-2 border-orange-200 pl-3 py-1"></p>
+                </section>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        const rawText = `I'm joining SpaceX and xAI, working closely with Elon and team to build superintelligence. 
+
+Together SpaceX and xAI combine physical and digital intelligence under a leader who understands hardware at the deepest level. Add a high-agency culture with frontier-scale resources, and you get the possibility to achieve something truly unique. 
+
+I’m excited to advance the fields I’ve obsessed over for years, from robotics research to building AI models on the founding teams of Mistral and TML. Both were extraordinary journeys with extraordinary people that shaped how I think about building intelligence from the ground up. 
+
+Grateful for everything that brought me here and can’t wait to get started.`;
+
+        // Mock Database for Word Analysis
+        const dictionary = {
+            "superintelligence": {
+                phonetic: "/ˌsuːpərɪnˈtelɪdʒəns/",
+                meaning: "超级智能。指在几乎所有具有实用价值的领域都远超人类认知能力的智能。",
+                breakdown: "Super- (超越) + Intelligence (智能)。该词常出现在通用人工智能(AGI)讨论的语境中。",
+                example: "The pursuit of superintelligence brings both immense opportunity and existential risk."
+            },
+            "high-agency": {
+                phonetic: "/haɪ ˈeɪdʒənsi/",
+                meaning: "高主体性/高能动性。形容一个人不被规则束缚，主动寻找方法达成目标的能力。",
+                breakdown: "Agency 在社会学中指'行动力'。High-agency 是硅谷文化中极受推崇的一种人格特质。",
+                example: "We look for high-agency individuals who can thrive in chaotic environments."
+            },
+            "frontier-scale": {
+                phonetic: "/ˈfrʌntɪər skeɪl/",
+                meaning: "前沿规模。指处于科学或技术最顶尖、最极限状态的资源体量。",
+                breakdown: "Frontier (边疆/前沿) + Scale (规模)。指代如数万颗 GPU 组成的计算集群等稀缺资源。",
+                example: "Frontier-scale computing is required to train the next generation of large models."
+            },
+            "obsessed": {
+                phonetic: "/əbˈsest/",
+                meaning: "痴迷的，心神不宁的。强调对某事投入了极大的、近乎疯狂的热情。",
+                breakdown: "词根 sed- 表示'坐'。ob- (对着) + sed (坐)，原意是被某种思绪'缠住了'。",
+                example: "He has been obsessed with solving this mathematical puzzle for years."
+            },
+            "extraordinary": {
+                phonetic: "/ɪkˈstrɔːrdəneri/",
+                meaning: "非凡的，特别的。超出普通、常规范围的事物。",
+                breakdown: "Extra (超出) + Ordinary (平常)。指在质量、能力或规模上显著优于普通水准。",
+                example: "The team showed extraordinary resilience during the crisis."
+            },
+            "agency": {
+                phonetic: "/ˈeɪdʒənsi/",
+                meaning: "动力，中介，主体性。在这里特指个人对自己命运和环境的影响力。",
+                breakdown: "拉丁词根 ag- 表示'做'。指代一种主动出击、不随波逐流的力量感。",
+                example: "Individual agency is a core concept in modern psychology."
+            },
+            "robotics": {
+                phonetic: "/roʊˈbɑːtɪks/",
+                meaning: "机器人学。涉及机器人的设计、制造、操作和使用的工程与科学分支。",
+                breakdown: "Robot + -ics (学科后缀)。该领域目前正与 AI 深度融合以实现具身智能。",
+                example: "The fusion of LLMs and robotics is the next major frontier."
+            },
+            "hardware": {
+                phonetic: "/ˈhɑːrdwer/",
+                meaning: "硬件。指计算机系统中的物理部件，也泛指实体机械。",
+                breakdown: "Hard (硬的) + Ware (物品)。在 AI 语境下，通常指代芯片、传感器和执行机构。",
+                example: "The software is limited by the capabilities of the hardware it runs on."
+            },
+            "ground": {
+                phonetic: "/ɡraʊnd/",
+                meaning: "地面。From the ground up 意为'从零开始'、'从基层做起'。",
+                breakdown: "常用习语：From the ground up 表示彻底地、完全地从最基础的部分构建。",
+                example: "They rebuilt the entire infrastructure from the ground up."
+            }
+        };
+
+        // Initialize App
+        function init() {
+            const textContainer = document.getElementById('textGrid');
+            const paragraphs = rawText.split('\n\n');
+
+            paragraphs.forEach(para => {
+                const pElem = document.createElement('p');
+                const words = para.split(/(\s+)/); // Preserve spaces
+
+                words.forEach(word => {
+                    if (word.trim().length > 0) {
+                        const span = document.createElement('span');
+                        // Clean word for dictionary lookup
+                        const cleanWord = word.toLowerCase().replace(/[^a-z-]/g, '');
+                        
+                        span.textContent = word;
+                        span.className = 'word-clickable';
+                        
+                        // If it's a key term from dictionary or just any word
+                        span.onclick = (e) => handleWordClick(e, cleanWord, word);
+                        pElem.appendChild(span);
+                    } else {
+                        pElem.appendChild(document.createTextNode(word));
+                    }
+                });
+                textContainer.appendChild(pElem);
+            });
+        }
+
+        let currentWord = "";
+
+        function handleWordClick(event, cleanWord, originalWord) {
+            // UI: Update highlights
+            document.querySelectorAll('.word-active').forEach(el => el.classList.remove('word-active'));
+            event.target.classList.add('word-active');
+
+            // Speech
+            speak(originalWord);
+
+            // Analysis Update
+            updateAnalysis(cleanWord, originalWord);
+        }
+
+        function updateAnalysis(cleanWord, originalWord) {
+            const welcome = document.getElementById('welcomeMessage');
+            const content = document.getElementById('contentDisplay');
+            
+            welcome.classList.add('hidden');
+            content.classList.remove('hidden');
+
+            const data = dictionary[cleanWord] || {
+                phonetic: "/.../",
+                meaning: `"${originalWord}" 的通用释义。`,
+                breakdown: "该词为基础词汇或专有名词。",
+                example: "暂无针对该词的深度解析，点击上方图标可试听发音。"
+            };
+
+            document.getElementById('targetWord').textContent = originalWord.replace(/[^a-zA-Z]/g, '');
+            document.getElementById('phonetic').textContent = data.phonetic;
+            document.getElementById('meaning').textContent = data.meaning;
+            document.getElementById('example').textContent = data.example;
+            
+            const breakdownBox = document.getElementById('breakdown');
+            breakdownBox.innerHTML = '';
+            data.breakdown.split('. ').forEach(item => {
+                const div = document.createElement('div');
+                div.textContent = `• ${item}`;
+                breakdownBox.appendChild(div);
+            });
+
+            currentWord = originalWord;
+        }
+
+        function speak(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.cancel(); // Interrupt previous
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function speakCurrentWord() {
+            if (currentWord) speak(currentWord);
+        }
+
+        // Run
+        window.onload = init;
+    </script>
+</body>
+</html>
